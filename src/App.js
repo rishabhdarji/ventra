@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import CarouselStack from './components/CarouselStack';
+
+import upperPart from './assets/upper part.jpeg';
+import timeImage from './assets/time.jpg';
+import img1 from './assets/IMG 1.jpg';
+import img2 from './assets/IMG 2.jpg';
+import img3 from './assets/IMG 3.jpg';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <CarouselStack
+        upperSrc={upperPart}
+        timeSrc={timeImage}
+        bottomImgs={[img1, img2, img3]}
+      />
     </div>
   );
 }

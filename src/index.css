@@ -1,13 +1,144 @@
-body {
+/* index.css - simple styles, no Tailwind */
+
+/* Page layout - fullscreen, no scroll */
+html, body, #root {
+  height: 100vh;
+  width: 100vw;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+  overflow: hidden; /* prevent scrolling */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background-color: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Centering wrapper - no padding, edge-to-edge */
+.page-wrapper {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
+
+/* Container that constrains width (mobile friendly) */
+.stack-wrapper {
+  width: 100%;
+  max-width: 420px; /* mobile-optimized */
+  box-sizing: border-box;
+  position: relative; /* for carousel positioning */
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Simple spacing - no margins for edge-to-edge */
+.upper-block,
+.time-block {
+  margin: 0;
+  flex-shrink: 0; /* don't compress these */
+}
+
+/* Dynamic time display styling */
+.time-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 25px;
+  background-color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  color: #0a1f44;
+  gap: 40px;
+}
+
+.date-text {
+  font-size: 28px;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.time-text {
+  font-size: 28px;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Make images responsive and fill width edge-to-edge */
+.responsive-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+/* Carousel container - position relative so slides can overlap */
+.carousel-container {
+  position: relative;
+  margin: 0;
+  flex: 1; /* take remaining space */
+  overflow: hidden;
+  min-height: 0; /* allow flex shrinking */
+}
+
+/* Each slide fills container (positioned absolute) */
+.carousel-slide {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 700ms cubic-bezier(0.4,0,0.2,1); /* matches JS fade time */
+  will-change: opacity;
+  pointer-events: none;
+  overflow: hidden; /* prevent any overflow causing white space */
+}
+
+/* Active slide shown */
+.carousel-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Carousel images fill container completely */
+.carousel-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fill container, crop if needed to remove white space */
+  margin: 0;
+}
+
+/* Small accessibility focus outline if container focused */
+.carousel-container:focus {
+  outline: 2px solid rgba(0,0,0,0.08);
+}
+
+/* Click overlay - perfectly aligned on top of carousel */
+.click-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.click-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ensure it covers exactly like carousel images */
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
