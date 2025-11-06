@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import '../index.css'; // ensure base styles are loaded
 
 // Config
-const FADE_DURATION_MS = 700; // fade time in ms (matches CSS)
-const INTERVAL_MS = 1000;     // change every 1 second
+const FADE_DURATION_MS = 800; // smooth fade without bounce
+const INTERVAL_MS = 2000;     // change every 2 seconds
 
 const createSequence = (imgs) => {
   if (!imgs || imgs.length < 3) return imgs.slice();
@@ -129,7 +129,7 @@ export default function CarouselStack({ upperSrc, timeSrc, bottomImgs = [] }) {
   }
 
   const transitionStyle = {
-    transition: `opacity ${FADE_DURATION_MS}ms cubic-bezier(0.4,0,0.2,1)`
+    transition: `opacity ${FADE_DURATION_MS}ms linear`
   };
 
   return (
